@@ -87,19 +87,17 @@ const SignUp = () => {
 
       setErrorMsg(""); // Clear any previous errors
     } catch (error) {
-      console.error(error);
       setIsUploading(false);
       if (error instanceof z.ZodError) {
         // Check if it's a validation error
         if (error.errors.length > 0) {
           setErrorMsg(error.errors[0].message);
-          console.log(error.errors[0].message);
+
           setTimeout(() => {
             setErrorMsg(""); // Clear the error message after 2 seconds
           }, 2000);
         }
       } else {
-        console.error("Error uploading file:", error.response.data.error);
         setErrorMsg(error.response.data.error);
       }
     }
